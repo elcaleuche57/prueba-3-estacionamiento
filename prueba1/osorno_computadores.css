@@ -1,0 +1,108 @@
+/* osorno_computadores.css */
+
+h1 {
+    font-family: arial;
+    color: rgb(255, 255, 255);
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: rgb(255, 255, 255);
+}
+
+main, section {
+    font-family: arial;
+    padding: 20px;
+    margin-top: 20px;
+    line-height: 1.6; /* Corregido: punto decimal, no coma */
+    background-color: #278e41;
+    color: rgb(255, 255, 255);
+}
+
+body {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial;
+    color: rgb(0, 0, 0);
+}
+
+img {
+    max-width: 30%;
+    height: auto;
+    margin: 20px;
+    border-radius: 8px; /* Borde redondeado suave por defecto para todas las imágenes */
+}
+
+.imagen-derecha {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    height: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.contenedor-servicios {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap; /* Para que las imágenes bajen si no caben en una fila */
+}
+
+/* Corregido: Cambié .nombre_servicio a .nombre-servicio para que coincida con tu HTML */
+.nombre-servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 200px; /* Ancho fijo para cada bloque de servicio */
+    margin: 10px;
+}
+
+/* ESTA ES LA PARTE IMPORTANTE PARA HACERLAS BONITAS */
+.servicio {
+    border-radius: 10px; /* Un redondeado suave y uniforme */
+    height: 180px; /* Una altura fija para todas */
+    width: 150px; /* Un ancho fijo para todas (ahora son más rectangulares) */
+    object-fit: cover; /* Esto es clave: ajusta la imagen sin deformarla */
+    border: 3px solid rgba(255, 255, 255, 0.7); /* Un borde blanco fino con transparencia */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Una sombra suave para dar profundidad */
+    margin-bottom: 10px;
+}
+
+.contenedor {
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    background-color: #278e41;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.3s; /* Corregido: punto, no coma */
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 20px; /* Corregido: espacio extra */
+    background-color: #1f1e1eb8;
+    margin-bottom: 0;
+}
+
+span:hover {
+    color: rgb(0, 0, 0);
+}
+
+.contenedor a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Estilos para el footer (lo añado para que no quede feo) */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-family: arial;
+    color: #333;
+}
