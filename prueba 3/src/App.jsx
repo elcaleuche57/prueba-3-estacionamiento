@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Formulario from '/components/Formulario';
+import ListaVehiculos from './components/ListaVehiculos'
 
 function App() {
-  const [count, setCount] = useState(0)
+  cosnt [vehiculos, setVehiculos] = useState([]);
+
+  const agregarVehiculo = (nuevoVehiculo) => {
+    setVehiculos([...vehiculos, nuevoVehiculo]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>hola mundo culiao</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app-container">
+      <header>
+        <h1>Sistema de Control de Estacionamiento</h1>
+        <p>INACAP - Programación Front End</p>
+      </header>
 
-export default App
+      <main>
+        <section className="form-section">
+          
+          <Formulario onAgregar={agregarVehiculo} />
+        </section>
+        
+        <section className="list-section">
+          
+          <ListaVehiculos lista={vehiculos} />
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 - Sistema de Gestión de Cupos. Todos los derechos reservados.</p>
+      </footer>
+    </div>
+  );
+}
+  
+
+
+
+export default App;
