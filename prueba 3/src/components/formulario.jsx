@@ -1,42 +1,76 @@
-import { useState } from 'react';
-import './App.css';
-// 1. Importamos los componentes hijos
-import Formulario from './components/Formulario';
-import ListaVehiculos from './components/ListaVehiculos';
+import React, { useState } from 'react';
 
-function App() {
-  // 2. Definición del Estado Principal (Fase 2)
-  const [vehiculos, setVehiculos] = useState([]);
+function Formulario({ onAgregar }) {
+  const [patente, setPatente] = useState('');
+  const [marca, setMarca] = useState('');
+  const [permanente, setPermanente] = useState(false);
 
-  // 3. Función para agregar un vehículo (Fase 2 - Comunicación entre jerarquías)
-  const agregarVehiculo = (nuevoVehiculo) => {
-    setVehiculos([...vehiculos, nuevoVehiculo]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!patente || !marca) {
+      alert('Todos los campos son obligatorios.');
+      return;
+    }
+
+    const formatoPatente = /^[A-Z]{4}\d{2}$/i;
+    if (!formatoPatente.test(patente)) {
+      alert('El formato de la patente debe ser de 4 letras y 2 números (Ej: ABCD12).');
+      return;
+    }
+
+    const nuevoVehiculo = {
+      id: Date.now().toString(),
+      patente: patente.toUpperCase().trim(),
+      marca: marca.trim(),
+      permanente: permanente
+    };
+
+    onAgregar(nuevoVehiculo);
+
+    setPatente('');
+    setMarca('');
+    setPermanente(false);
   };
 
   return (
-    <div className="app-container">
-      <header>
-        <h1>Sistema de Control de Estacionamiento</h1>
-        <p>INACAP - Programación Front End</p>
-      </header>
+    <form className="vehiculo-form" onSubmit={handleSubmit}>
+      <h2>Registrar Vehículo</h2>
+      
+      <div className="form-group">
+        <label>Patente:</label>
+        <input 
+          type="text" 
+          placeholder="ABCD12"
+          value={patente}
+          onChange={(e) => setPatente(e.target.value)}
+        />
+      </div>
 
-      <main>
-        <section className="form-section">
-          {/* Pasamos la función como prop al formulario */}
-          <Formulario onAgregar={agregarVehiculo} />
-        </section>
-        
-        <section className="list-section">
-          {/* Pasamos el arreglo de vehículos a la lista para que los muestre */}
-          <ListaVehiculos lista={vehiculos} />
-        </section>
-      </main>
+      <div className="form-group">
+        <label>Marca:</label>
+        <input 
+          type="text" 
+          placeholder="Ej: Toyota"
+          value={marca}
+          onChange={(e) => setMarca(e.target.value)}
+        />
+      </div>
 
-      <footer>
-        <p>&copy; 2026 - Sistema de Gestión de Cupos. Todos los derechos reservados.</p>
-      </footer>
-    </div>
+      <div className="form-group-checkbox">
+        <label>
+          <input 
+            type="checkbox" 
+            checked={permanente}
+            onChange={(e) => setPermanente(e.target.checked)}
+          />
+          ¿Es residente permanente?
+        </label>
+      </div>
+
+      <button type="submit">Ingresar Vehículo</button>
+    </form>
   );
 }
 
-export default App;
+export default Formulario;
