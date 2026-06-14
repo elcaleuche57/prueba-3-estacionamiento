@@ -1,6 +1,8 @@
 import React from 'react';
 
-function CardVehiculo({ patente, marca, permanente }) {
+function CardVehiculo({ vehiculo }) {
+  const { patente, marca, permanente } = vehiculo;
+
   return (
     <div className={`vehiculo-card ${permanente ? 'clase-permanente' : 'clase-temporal'}`}>
       <h3>{patente}</h3>
